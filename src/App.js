@@ -59,7 +59,9 @@ export default class App {
 	 */
 	static ligne(caractere, taille, vide) {
 		var resultat = document.createElement("div");
-
+		if (taille === 0) {
+			return resultat;
+		}
 		if (taille === 1) {
 			resultat.innerHTML = caractere;
 			return resultat;
@@ -86,7 +88,7 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(this.ligne(this.caractere, this.taille, false));
+		tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 	}
 	static colonne() {
 		//	<div class="tableau">
@@ -100,10 +102,7 @@ export default class App {
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let i = 0; i < this.taille; i += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			var html = "";
-			html += this.caractere;
-			ligne.innerHTML = html;
+			tableau.appendChild(this.ligne(this.caractere, 1));
 		}
 	}
 	static carre() {
@@ -118,7 +117,7 @@ export default class App {
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
-			var ligne = tableau.appendChild(this.ligne(this.caractere, this.taille, false));
+			tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 		}
 	}
 	static triangle() {
@@ -133,7 +132,7 @@ export default class App {
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
-			var ligne = tableau.appendChild(this.ligne(this.caractere, j+1, false));
+			tableau.appendChild(this.ligne(this.caractere, j+1, false));
 		}
 	}
 	static rangeeVide() {
@@ -158,7 +157,7 @@ export default class App {
 		tableau.classList.add("tableau");
 		tableau.appendChild(this.ligne(this.caractere, 1));
 		for (let i = 1; i < this.taille - 1; i += 1) {
-			var ligne = tableau.appendChild(this.ligne(" ", 1));
+			tableau.appendChild(this.ligne(" ", 1));
 		}
 		tableau.appendChild(this.ligne(this.caractere, 1));
 	}	
