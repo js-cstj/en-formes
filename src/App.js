@@ -155,6 +155,7 @@ export default class App {
 			var ligne = tableau.appendChild(document.createElement("div"));
 			ligne.innerHTML = " ";
 		}
+		var ligne = tableau.appendChild(document.createElement("div"));
 		ligne.innerHTML = this.caractere;
 
 	}	
