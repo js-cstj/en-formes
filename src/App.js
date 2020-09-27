@@ -50,6 +50,35 @@ export default class App {
 		//===========================================================
 		this.taille = formes.inTaille.valueAsNumber;
 	}
+	/**
+	 * Retourne un élément div contenant le bon nombre de caracteres
+	 * La ligne peut également être vide
+	 * @param {string} caractere Le caractere à utiliser
+	 * @param {number} taille La taille finale de la ligne
+	 * @param {HTMLElement} vide Un élément div
+	 */
+	static ligne(caractere, taille, vide) {
+		var resultat = document.createElement("div");
+
+		if (taille === 1) {
+			resultat.innerHTML = caractere;
+			return resultat;
+		}
+		let html = "";
+		if (vide === true) {
+			html += caractere;
+			for (let i = 0; i < taille - 2; i += 1) {
+				html += " "
+			}
+			html += caractere;
+		} else {
+			for (let i = 0; i < taille; i += 1) {
+				html += caractere;
+			}
+		}
+		resultat.innerHTML = html;
+		return resultat;
+	}
 	static rangee() {
 		//	<div class="tableau">
 		//		<div>*****</div>
@@ -57,12 +86,7 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		for (let i = 0; i < this.taille; i += 1) {
-			html += this.caractere;
-		}
-		ligne.innerHTML = html;
+		var ligne = tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 	}
 	static colonne() {
 		//	<div class="tableau">
@@ -94,12 +118,7 @@ export default class App {
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			var html = "";
-			for (let i = 0; i < this.taille; i += 1) {
-				html += this.caractere;
-			}
-			ligne.innerHTML = html;
+			var ligne = tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 		}
 	}
 	static triangle() {
@@ -114,12 +133,7 @@ export default class App {
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			var html = "";
-			for (let i = 0; i <= j; i += 1) {
-				html += this.caractere;
-			}
-			ligne.innerHTML = html;
+			var ligne = tableau.appendChild(this.ligne(this.caractere, j+1, false));
 		}
 	}
 	static rangeeVide() {
@@ -129,14 +143,7 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		html += this.caractere;
-		for (let i = 1; i < this.taille - 1; i += 1) {
-			html += " ";
-		}
-		html += this.caractere;
-		ligne.innerHTML = html;
+		tableau.appendChild(this.ligne(this.caractere, this.taille, true));
 	}
 	static colonneVide() {
 		//	<div class="tableau">
@@ -149,14 +156,11 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(document.createElement("div"));
-		ligne.innerHTML = this.caractere;
+		tableau.appendChild(this.ligne(this.caractere, 1));
 		for (let i = 1; i < this.taille - 1; i += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			ligne.innerHTML = " ";
+			var ligne = tableau.appendChild(this.ligne(" ", 1));
 		}
-		ligne.innerHTML = this.caractere;
-
+		tableau.appendChild(this.ligne(this.caractere, 1));
 	}	
 	
 	static carreVide() {
@@ -170,28 +174,11 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		for (let i = 0; i < this.taille; i += 1) {
-			html += this.caractere;
-		}
-		ligne.innerHTML = html;
+		tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 		for (let j = 0; j < this.taille - 2; j += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			var html = "";
-			html += this.caractere
-			for (let i = 0; i < this.taille - 2; i += 1) {
-				html += " ";
-			}
-			html += this.caractere
-			ligne.innerHTML = html;
+			tableau.appendChild(this.ligne(this.caractere, this.taille, true));
 		}
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		for (let i = 0; i < this.taille; i += 1) {
-			html += this.caractere;
-		}
-		ligne.innerHTML = html;
+		tableau.appendChild(this.ligne(this.caractere, this.taille, false));
 	}
 	static triangleVide() {
 		//	<div class="tableau">
@@ -204,26 +191,11 @@ export default class App {
 		var app = document.getElementById("app");
 		var tableau = app.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		html += this.caractere;
-		ligne.innerHTML = html;
-		for (let j = 0; j < this.taille - 2; j += 1) {
-			var ligne = tableau.appendChild(document.createElement("div"));
-			var html = "";
-			html += this.caractere
-			for (let i = 0; i < j; i += 1) {
-				html += " ";
-			}
-			html += this.caractere
-			ligne.innerHTML = html;
+		tableau.appendChild(this.ligne(this.caractere, 1));
+		for (let j = 1; j < this.taille - 1; j += 1) {
+			tableau.appendChild(this.ligne(this.caractere, j + 1, true));
 		}
-		var ligne = tableau.appendChild(document.createElement("div"));
-		var html = "";
-		for (let i = 0; i < this.taille; i += 1) {
-			html += this.caractere;
-		}
-		ligne.innerHTML = html;
+		tableau.appendChild(this.ligne(this.caractere, this.taille));
 	}
 	/**
 	 * Méthode qui permet d'attendre le chargement de la page avant d'éxécuter le script principal
