@@ -12,7 +12,21 @@
 	<div id="interface">
 		<header><h1>En formes</h1></header>
 		<footer><span>&copy; 2020</span><strong>En formes</strong></footer>
-		<div class="body" id="app"></div>
+		<div class="body" id="app">
+			<form id="formes" action="" onsubmit="return false;">
+				<div>
+					<label for="inCaractere">Caractère</label>
+					<input type="text" name="inCaractere" id="inCaractere" value="*" maxlength="1" minlength="1">
+				</div>
+				<div>
+					<label for="inTaille">Taille</label>
+					<input type="number" name="inTaille" id="inTaille" min="3" max="15" value="5">
+				</div>
+				<div>
+					<button id="btnDessiner" type="button">Dessiner</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

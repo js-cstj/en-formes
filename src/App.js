@@ -2,23 +2,44 @@
  * @module App
  */
 export default class App {
+	static main() {
+		document.getElementById("btnDessiner").addEventListener("click", e => {
+			this.dessiner();
+		});
+		document.getElementById("formes").addEventListener("change", e => {
+			this.dessiner();
+		});
+	}
+	static dessiner() {
+		this.supprimerTableaux();
+		this.demanderInfos();
+		this.rangee();
+		this.colonne();
+		this.carre();
+		this.triangle();
+		this.rangeeVide();
+		this.colonneVide();
+		this.carreVide();
+		this.triangleVide();
+	}
+	static supprimerTableaux() {
+		var tableaux = Array.from(document.querySelectorAll(".tableau"));
+		for (let i = 0; i < tableaux.length; i += 1) {
+			let tableau = tableaux[i];
+			tableau.parentElement.removeChild(tableau);
+		}
+	}
 	/**
 	 * Méthode qui demande les infos à l'usager et les mets 
 	 * dans leur propriété de classe correspondante.
 	 */
 	static demanderInfos() {
+		// Récupérer le formulaire
+		var formes = document.getElementById("formes");
 		//===========================================================
 		// Demander le caractère à l'usager
 		//===========================================================
-		this.caractere = prompt("Donnez un caractère", "*");
-		// Si le caractère est null (l'usager a fait annuler), on utilise "*"
-		if (this.caractere === null) {
-			this.caractere = "*"
-		}
-		// Si la chaine a plus de 1 caractère, on ne garde que le premier
-		if (this.caractere.length > 1) {
-			this.caractere = this.caractere[0];
-		}
+		this.caractere = formes.inCaractere.value;
 		// Si le caractère est l'espace ou si la chaine est vide, on utilise "*"
 		if (this.caractere === "" || this.caractere === " ") {
 			this.caractere = "*"
@@ -27,25 +48,7 @@ export default class App {
 		//===========================================================
 		// Demander la taille à l'usager
 		//===========================================================
-		this.taille = prompt("Quelle taille?", 5);
-		// Si la taille est null (l'usager a fait annuler), on utilise "5"
-		if (this.taille === null) {
-			this.taille = "5"
-		}
-		// La taille doit être transformée en entier
-		this.taille = parseInt(this.taille);
-		// Si la taille donnée n'était pas un nombre (NaN), on utilise 5 
-		if (isNaN(this.taille)) {
-			this.taille = 5;
-		}
-		// Si la taille est plus grande que 15, on utilise 15
-		if (this.taille > 15) {
-			this.taille = 15;
-		}
-		// Si la taille est plus petite que 3, on utilise 3
-		if (this.taille < 3) {
-			this.taille = 3;
-		}
+		this.taille = formes.inTaille.valueAsNumber;
 	}
 	static rangee() {
 		//	<div class="tableau">
@@ -119,6 +122,43 @@ export default class App {
 			ligne.innerHTML = html;
 		}
 	}
+	static rangeeVide() {
+		//	<div class="tableau">
+		//		<div>*   *</div>
+		//	</div>
+		var app = document.getElementById("app");
+		var tableau = app.appendChild(document.createElement("div"));
+		tableau.classList.add("tableau");
+		var ligne = tableau.appendChild(document.createElement("div"));
+		var html = "";
+		html += this.caractere;
+		for (let i = 1; i < this.taille - 1; i += 1) {
+			html += " ";
+		}
+		html += this.caractere;
+		ligne.innerHTML = html;
+	}
+	static colonneVide() {
+		//	<div class="tableau">
+		//		<div>*</div>
+		//		<div> </div>
+		//		<div> </div>
+		//		<div> </div>
+		//		<div>*</div>
+		//	</div>
+		var app = document.getElementById("app");
+		var tableau = app.appendChild(document.createElement("div"));
+		tableau.classList.add("tableau");
+		var ligne = tableau.appendChild(document.createElement("div"));
+		ligne.innerHTML = this.caractere;
+		for (let i = 1; i < this.taille - 1; i += 1) {
+			var ligne = tableau.appendChild(document.createElement("div"));
+			ligne.innerHTML = " ";
+		}
+		ligne.innerHTML = this.caractere;
+
+	}	
+	
 	static carreVide() {
 		//	<div class="tableau">
 		//		<div>*****</div>
@@ -185,22 +225,13 @@ export default class App {
 		}
 		ligne.innerHTML = html;
 	}
-	static main() {
-		var app = document.getElementById("app");
-	}
 	/**
 	 * Méthode qui permet d'attendre le chargement de la page avant d'éxécuter le script principal
 	 * @returns undefined Ne retourne rien
 	 */
 	static init() {
 		window.addEventListener("load", () => {
-			this.demanderInfos();
-			this.rangee();
-			this.colonne();
-			this.carre();
-			this.triangle();
-			this.carreVide();
-			this.triangleVide();
+			this.main();
 		});
 	}
 }
