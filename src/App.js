@@ -1,7 +1,14 @@
-/**
- * @module App
- */
 export default class App {
+	static main() {
+		var app = document.getElementById("app");
+		this.demanderInfos();
+		this.rangee();
+		this.colonne();
+		this.carre();
+		this.triangle();
+		this.carreVide();
+		this.triangleVide();
+	}
 	/**
 	 * Méthode qui demande les infos à l'usager et les mets 
 	 * dans leur propriété de classe correspondante.
@@ -185,23 +192,4 @@ export default class App {
 		}
 		ligne.innerHTML = html;
 	}
-	static main() {
-		var app = document.getElementById("app");
-	}
-	/**
-	 * Méthode qui permet d'attendre le chargement de la page avant d'éxécuter le script principal
-	 * @returns undefined Ne retourne rien
-	 */
-	static init() {
-		window.addEventListener("load", () => {
-			this.demanderInfos();
-			this.rangee();
-			this.colonne();
-			this.carre();
-			this.triangle();
-			this.carreVide();
-			this.triangleVide();
-		});
-	}
 }
-App.init();

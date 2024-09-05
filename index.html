@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-	<meta charset="UTF-8"/>
-	<title>En formes</title>
-	<link rel="stylesheet" href="./src/style.css"/>
+	<meta charset="UTF-8" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./css/style.css" />
 	<script type="module">
 		import App from "./src/App.js";
+		App.main();
 	</script>
+	<script type="module">
+		document.body.addEventListener("click", () => {
+			changerCouleur();
+		});
+		setInterval(() => {
+			changerCouleur();
+		}, 10000 + Math.floor(Math.random() * 100) * 100);
+		function changerCouleur() {
+			document.body.style.setProperty("--h", Math.floor(Math.random() * 36) * 10);
+			document.body.style.setProperty("--s", 50 + Math.floor(Math.random() * 10) * 5 + "%");
+			document.body.style.setProperty("--d", 10 + Math.floor(Math.random() * 20) + "%");
+		}
+	</script>
+	<title>En formes</title>
 </head>
+
 <body>
 	<div id="interface">
-		<header><h1>En formes</h1></header>
-		<footer><span>&copy; 2020</span><strong>En formes</strong></footer>
+		<header>
+			<h1>En formes</h1>
+		</header>
 		<div class="body" id="app"></div>
+		<footer><span>&copy; Web 3 : Dynamique</span><strong>En formes</strong></footer>
 	</div>
 </body>
+
 </html>
