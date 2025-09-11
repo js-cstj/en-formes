@@ -3,7 +3,8 @@
  */
 export default class App {
 	static main() {
-		document.getElementById("btnDessiner").addEventListener("click", e => {
+		document.getElementById("formes").addEventListener("submit", e => {
+			e.preventDefault();
 			this.dessiner();
 		});
 		document.getElementById("formes").addEventListener("change", e => {
@@ -54,8 +55,8 @@ export default class App {
 		//	<div class="tableau">
 		//		<div>*****</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		var ligne = tableau.appendChild(document.createElement("div"));
 		var html = "";
@@ -72,8 +73,8 @@ export default class App {
 		//		<div>*</div>
 		//		<div>*</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let i = 0; i < this.taille; i += 1) {
 			var ligne = tableau.appendChild(document.createElement("div"));
@@ -90,8 +91,8 @@ export default class App {
 		//		<div>*****</div>
 		//		<div>*****</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
 			var ligne = tableau.appendChild(document.createElement("div"));
@@ -110,8 +111,8 @@ export default class App {
 		//		<div>****</div>
 		//		<div>*****</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		for (let j = 0; j < this.taille; j += 1) {
 			var ligne = tableau.appendChild(document.createElement("div"));
@@ -126,8 +127,8 @@ export default class App {
 		//	<div class="tableau">
 		//		<div>*   *</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		var ligne = tableau.appendChild(document.createElement("div"));
 		var html = "";
@@ -146,8 +147,8 @@ export default class App {
 		//		<div> </div>
 		//		<div>*</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		var ligne = tableau.appendChild(document.createElement("div"));
 		ligne.innerHTML = this.caractere;
@@ -168,8 +169,8 @@ export default class App {
 		//		<div>*   *</div>
 		//		<div>*****</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		var ligne = tableau.appendChild(document.createElement("div"));
 		var html = "";
@@ -202,8 +203,8 @@ export default class App {
 		//		<div>*  *</div>
 		//		<div>*****</div>
 		//	</div>
-		var app = document.getElementById("app");
-		var tableau = app.appendChild(document.createElement("div"));
+		var resultat = document.getElementById("resultat");
+		var tableau = resultat.appendChild(document.createElement("div"));
 		tableau.classList.add("tableau");
 		var ligne = tableau.appendChild(document.createElement("div"));
 		var html = "";

@@ -1,0 +1,13 @@
+/* Psychedelic Pop:
+Font 1 (Heading): Rubik Glitch
+Font 2 (Subheading): Permanent Marker
+Font 3 (Body): Comfortaa
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Permanent+Marker&family=Comfortaa&display=swap');
+
+:root {
+    --font-titre: 'Rubik Glitch', cursive;
+    --font-soustitre: 'Permanent Marker', cursive;
+    --font-texte: 'Comfortaa', sans-serif;
+}

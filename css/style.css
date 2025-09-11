@@ -1,0 +1,110 @@
+@import url(psychedelic-pop.css);
+:root {
+	--h: 250;
+	--s: 50%;
+}
+html {
+	font-family: var(--font-texte);
+}
+body {
+	height: 100vh;
+	margin: 0;
+	background-color: hsl(var(--h), var(--s), 90%);
+}
+#interface {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	& > header, & > footer {
+		background-color: hsl(var(--h), var(--s), 80%);
+		display: flex;
+		justify-content: space-between;
+		justify-content: center;
+		color: hsl(var(--h), var(--s), 20%);
+		font-size: 2em;
+		font-family: var(--font-titre);
+	}
+	& > header {
+		order: -1000;
+		h1 {
+			font-weight: normal;
+			margin: 0;
+			font-size: 3em;
+		}
+	}
+	& > footer {
+		order: 1000;
+		font-size: smaller;
+	}
+}
+
+#app {
+	padding: 1em;
+}
+#resultat {
+	display: grid;
+}
+.tableau {
+	padding: 1em;
+	font-family: monospace;
+	background-color: hsl(var(--h), var(--s), 30%);
+	background-image: linear-gradient(to bottom right, hsl(var(--h), var(--s), 30%), hsl(var(--h), var(--s), 60%));
+	color: white;
+	font-weight: bold;
+	letter-spacing: .7ch;
+	line-height: 1em;
+	box-shadow: .1em .1em .3em #0008;
+	border-radius: 1em;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+	div {
+		white-space: pre;
+	}
+}
+form {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: .5em;
+	align-items: center;
+	margin: auto;
+	margin-bottom: 1em;
+	max-width: 30ch;
+	font-size: 1.2em;
+	>div {
+		display: contents;
+	}
+	button, input {
+		font: inherit;
+		padding: .5em;
+		font-size: 1em;
+		text-align: center;
+	}
+	button {
+		grid-column: 1 / -1;
+		background-color: hsl(calc(120 + var(--h)), 100%, 40%);
+		border: none;
+		border-radius: .5em;
+		box-shadow: 1px 1px 3px #0008;
+		font-weight: bold;
+		color: white;
+	}
+}
+#resultat {
+	display: grid;
+	gap: 1em;
+}
+@media (width > 600px) {
+	form {
+		grid-template-columns: auto 1fr auto 1fr;
+	}
+	#resultat {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media (width > 900px) {
+	#resultat {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
